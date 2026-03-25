@@ -1,1 +1,8 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace EnterPrise;
+public class Program
+{
+    public static void Main()
+    {
+
+    }
+}
