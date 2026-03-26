@@ -11,7 +11,7 @@ namespace EnterPrice_E_Commerece_System.Configrations.Catalog_Module_Configratio
     {
         public void Configure(EntityTypeBuilder<ProductVariant> builder)
         {
-            builder.HasIndex(pv => pv.SKU, "IX_SKU");
+            builder.HasIndex(pv => pv.SKU, "IX_SKU").IsUnique();
             
         }
     }
