@@ -17,7 +17,7 @@ namespace EnterPrice_E_Commerece_System.Configrations.Catalog_Module_Configratio
                 OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(p => p.Brand).WithMany(b => b.Products)
-                .HasForeignKey("FK_ProductBrand")
+                .HasForeignKey(p => p.BrandID)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(p => p.ProductVariants).WithOne(pv => pv.Product).

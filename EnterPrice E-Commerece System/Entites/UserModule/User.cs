@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnterPrice_E_Commerece_System.Entites.Sales___Orders_Module;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace EnterPrice_E_Commerece_System.Entites.UserModule
 {
     public class User
     {
-        public int USerID { get; set; }
+        public int UserID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string Email { get; set; }
@@ -14,7 +15,8 @@ namespace EnterPrice_E_Commerece_System.Entites.UserModule
         public bool IsActive { get; set; }
         public DateTime DateOfBirth { get; set; }
         public virtual ICollection<Address> Addresses { get; set; } = new HashSet<Address>();
-
-        public virtual ICollection<Role> Roles { get; set; } = new HashSet<Role>();
+        public virtual  Cart Cart { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new HashSet<Order>();
+        public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
     }
 }

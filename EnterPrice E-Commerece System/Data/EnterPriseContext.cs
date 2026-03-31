@@ -1,8 +1,10 @@
 ﻿using EnterPrice_E_Commerece_System.Configrations.Catalog_Module_Configrations;
 using EnterPrice_E_Commerece_System.Configrations.Inventory_Module_Configrations;
+using EnterPrice_E_Commerece_System.Configrations.Sales___Orders_Configrations;
 using EnterPrice_E_Commerece_System.Configrations.UserModule;
 using EnterPrice_E_Commerece_System.Entites;
 using EnterPrice_E_Commerece_System.Entites.Inventory_Module;
+using EnterPrice_E_Commerece_System.Entites.Sales___Orders_Module;
 using EnterPrice_E_Commerece_System.Entites.UserModule;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +28,15 @@ namespace EnterPrice_E_Commerece_System.Data
             modelBuilder.ApplyConfiguration(new WarehouseConfigrations());
             modelBuilder.ApplyConfiguration(new Inventory_Configrations());
             modelBuilder.ApplyConfiguration(new Userconfigrations());
+            modelBuilder.ApplyConfiguration(new CartConfigrations());
+            modelBuilder.ApplyConfiguration(new CartItemConfigrations());
+            modelBuilder.ApplyConfiguration(new OrderConfigrations());
+            modelBuilder.ApplyConfiguration(new OrderItemConfigrations());
+            modelBuilder.ApplyConfiguration(new PaymentConfigrations());
+            modelBuilder.ApplyConfiguration(new CouponConfigrations());
+            modelBuilder.ApplyConfiguration(new UserRoleConfigrations());
+
+
         }
 
         public virtual DbSet<Category> Categories { get; set; }
@@ -38,6 +49,12 @@ namespace EnterPrice_E_Commerece_System.Data
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Coupon> Coupons { get; set; }
+
+
 
     }
 }

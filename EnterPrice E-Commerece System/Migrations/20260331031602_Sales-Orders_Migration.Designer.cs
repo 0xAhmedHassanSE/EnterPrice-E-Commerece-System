@@ -4,6 +4,7 @@ using EnterPrice_E_Commerece_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterPrice_E_Commerece_System.Migrations
 {
     [DbContext(typeof(EnterPriseContext))]
-    partial class EnterPriseContextModelSnapshot : ModelSnapshot
+    [Migration("20260331031602_Sales-Orders_Migration")]
+    partial class SalesOrders_Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,6 +296,9 @@ namespace EnterPrice_E_Commerece_System.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FK_ProductBrand")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -304,6 +310,8 @@ namespace EnterPrice_E_Commerece_System.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ProductID");
+
+                    b.HasIndex("FK_ProductBrand");
 
                     b.HasIndex(new[] { "BrandID" }, "IX_BrandID");
 
@@ -405,12 +413,17 @@ namespace EnterPrice_E_Commerece_System.Migrations
                     b.Property<int>("CartID")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductVariantID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Qunatity")
                         .HasColumnType("int");
 
                     b.HasKey("ProudctVariantID", "CartID");
 
                     b.HasIndex("CartID");
+
+                    b.HasIndex("ProductVariantID");
 
                     b.ToTable("CartItem");
                 });
@@ -594,11 +607,11 @@ namespace EnterPrice_E_Commerece_System.Migrations
 
             modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.UserModule.User", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("USerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("USerID"));
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -624,7 +637,7 @@ namespace EnterPrice_E_Commerece_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserID");
+                    b.HasKey("USerID");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -632,19 +645,19 @@ namespace EnterPrice_E_Commerece_System.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.UserModule.UserRole", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("RolesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("UsersUSerID")
                         .HasColumnType("int");
 
-                    b.HasKey("RoleId", "UserId");
+                    b.HasKey("RolesId", "UsersUSerID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersUSerID");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("RoleUser");
                 });
 
             modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.Category", b =>
@@ -681,18 +694,18 @@ namespace EnterPrice_E_Commerece_System.Migrations
 
             modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.Product", b =>
                 {
-                    b.HasOne("EnterPrice_E_Commerece_System.Entites.Brand", "Brand")
-                        .WithMany("Products")
-                        .HasForeignKey("BrandID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("EnterPrice_E_Commerece_System.Entites.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("FK_Product_Category");
+
+                    b.HasOne("EnterPrice_E_Commerece_System.Entites.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("FK_ProductBrand")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 
@@ -744,7 +757,7 @@ namespace EnterPrice_E_Commerece_System.Migrations
 
                     b.HasOne("EnterPrice_E_Commerece_System.Entites.ProductVariant", "ProductVariant")
                         .WithMany("CartItems")
-                        .HasForeignKey("ProudctVariantID")
+                        .HasForeignKey("ProductVariantID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -820,23 +833,19 @@ namespace EnterPrice_E_Commerece_System.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.UserModule.UserRole", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.HasOne("EnterPrice_E_Commerece_System.Entites.UserModule.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
+                    b.HasOne("EnterPrice_E_Commerece_System.Entites.UserModule.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EnterPrice_E_Commerece_System.Entites.UserModule.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
+                    b.HasOne("EnterPrice_E_Commerece_System.Entites.UserModule.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersUSerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.Brand", b =>
@@ -895,11 +904,6 @@ namespace EnterPrice_E_Commerece_System.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.UserModule.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
             modelBuilder.Entity("EnterPrice_E_Commerece_System.Entites.UserModule.User", b =>
                 {
                     b.Navigation("Addresses");
@@ -908,8 +912,6 @@ namespace EnterPrice_E_Commerece_System.Migrations
                         .IsRequired();
 
                     b.Navigation("Orders");
-
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

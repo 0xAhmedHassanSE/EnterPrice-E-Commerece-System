@@ -8,6 +8,6 @@ namespace EnterPrice_E_Commerece_System.Entites.UserModule
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<User> Users { get; set; } = new HashSet<User>();
+        public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
     }
 }

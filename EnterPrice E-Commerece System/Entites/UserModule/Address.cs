@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnterPrice_E_Commerece_System.Entites.Sales___Orders_Module;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,6 @@ namespace EnterPrice_E_Commerece_System.Entites.UserModule
         public string ZipCode { get; set; }
         public bool IsDefault { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
 }
