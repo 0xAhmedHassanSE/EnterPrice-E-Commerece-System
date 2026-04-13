@@ -35,6 +35,8 @@ namespace EnterPrice_E_Commerece_System.Configrations.Catalog_Module_Configratio
             builder.HasIndex(p => p.Name, "IX_ProductName");
             builder.HasQueryFilter(p => !p.IsDeleted);
             builder.Property(p => p.BasePrice).HasColumnType("decimal(18,2)");
+            builder.Property(p => p.BasePrice).IsConcurrencyToken();
+            builder.Property(p => p.IsDeleted).IsConcurrencyToken();
 
         }
     }

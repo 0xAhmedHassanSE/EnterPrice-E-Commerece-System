@@ -24,6 +24,8 @@ namespace EnterPrice_E_Commerece_System.Configrations.Inventory_Module_Configrat
             builder.Property(In => In.ReorderLevel).HasDefaultValue(10);
             builder.HasIndex(In => In.ProductVariantId);
             builder.HasIndex(In => In.WarehouseId);
+            builder.Property(In => In.RowVersion).IsRowVersion();
+            builder.ToTable(t => t.HasCheckConstraint("CK_Products_Quantity", "[QuantityAvailable] >= 0"));
         }
     }
 }
