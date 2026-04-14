@@ -4,6 +4,7 @@ using EnterPrice_E_Commerece_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterPrice_E_Commerece_System.Migrations
 {
     [DbContext(typeof(EnterPriseContext))]
-    partial class EnterPriseContextModelSnapshot : ModelSnapshot
+    [Migration("20260414220911_ConcurruncyToken")]
+    partial class ConcurruncyToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
