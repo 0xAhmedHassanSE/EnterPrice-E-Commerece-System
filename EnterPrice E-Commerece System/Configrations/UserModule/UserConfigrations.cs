@@ -1,9 +1,6 @@
 ﻿using EnterPrice_E_Commerece_System.Entites.UserModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EnterPrice_E_Commerece_System.Configrations.UserModule
 {

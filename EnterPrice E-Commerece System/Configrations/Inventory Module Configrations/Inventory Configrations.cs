@@ -1,9 +1,6 @@
 ﻿using EnterPrice_E_Commerece_System.Entites.Inventory_Module;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EnterPrice_E_Commerece_System.Configrations.Inventory_Module_Configrations
 {
