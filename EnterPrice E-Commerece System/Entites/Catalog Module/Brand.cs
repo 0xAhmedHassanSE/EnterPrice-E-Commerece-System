@@ -1,4 +1,8 @@
 ﻿
+<<<<<<< HEAD
+=======
+
+>>>>>>> new-Fetaure
 namespace EnterPrice_E_Commerece_System.Entites
 {
     public class Brand

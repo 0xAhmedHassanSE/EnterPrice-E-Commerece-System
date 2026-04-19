@@ -1,4 +1,8 @@
 ﻿
+<<<<<<< HEAD
+=======
+
+>>>>>>> new-Fetaure
 namespace EnterPrice_E_Commerece_System.Entites.Inventory_Module
 {
     public class Supplier

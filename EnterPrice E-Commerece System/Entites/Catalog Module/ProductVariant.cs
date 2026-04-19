@@ -1,5 +1,9 @@
 ﻿using EnterPrice_E_Commerece_System.Entites.Inventory_Module;
 using EnterPrice_E_Commerece_System.Entites.Sales___Orders_Module;
+<<<<<<< HEAD
+=======
+
+>>>>>>> new-Fetaure
 
 namespace EnterPrice_E_Commerece_System.Entites
 {
